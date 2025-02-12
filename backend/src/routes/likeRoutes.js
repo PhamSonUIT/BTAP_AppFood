@@ -1,0 +1,11 @@
+import express from 'express';
+import { like } from '../controller/likeController.js';
+import { unlike } from '../controller/likeController.js';
+import { getLikeByResId } from '../controller/likeController.js';
+import { getLikeByUserId } from '../controller/likeController.js';
+const likeRoutes = express.Router();
+likeRoutes.post('/likeRestaurants', like);
+likeRoutes.post('/unlikeRestaurants', unlike);
+likeRoutes.get('/getLikeByResId/:res_id', getLikeByResId);
+likeRoutes.get('/getLikeByUserId/:user_id', getLikeByUserId);
+export default likeRoutes;
