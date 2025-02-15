@@ -2,20 +2,20 @@ import initModels from "../models/init-models.js";
 import connect from "../models/connect.js";
 // import connect from "../../db.js";
 const models = initModels(connect);
-const listOrders = async (req, res) => {
+const orders = async (req, res) => {
   try {
-    // const orders = await models.orders.findAll();
-    const queryString = "select * from orders";
-    const orders = await models.orders.findAll({
-      attributes: { exclude: ["id"] }, // Loại bỏ cột 'id'
-    });
-
-    // const orders = await connect.query(queryString);
-
-    res.json(orders);
+    const { user_id, res_id, amount, _code, arr_sub_id } = req.body;
+    const orders = await models.orders.create({
+      user_id: user_id,
+      res_id: res_id,
+      amount: amount,
+      _code: _code,
+      arr_sub_id: arr_sub_id,
+  });
+    res.status(200).json({ orders });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-export { listOrders };
+export { orders };

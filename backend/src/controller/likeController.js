@@ -5,6 +5,7 @@ const models = initModels(connect);
 const like = async (req, res) => {
   try {
     const { user_id, res_id } = req.body;
+    
     const restaurant = await models.like_res.create({
       user_id: user_id,
       res_id: res_id,
@@ -20,7 +21,7 @@ const like = async (req, res) => {
 const unlike = async (req, res) => {
   try {
     const { user_id, res_id } = req.body;
-
+    
     const restaurant = await models.like_res.destroy({
       where: { user_id: user_id, res_id: res_id },
     });
@@ -35,6 +36,7 @@ const unlike = async (req, res) => {
 const getLikeByResId = async (req, res) => {
   try {
     const { res_id } = req.params;
+    
     const likeById = await models.like_res.findAll({
       where: { res_id: res_id },
     });
@@ -50,6 +52,7 @@ const getLikeByResId = async (req, res) => {
 const getLikeByUserId = async (req, res) => {
   try {
     const { user_id } = req.params;
+    
     const likeById = await models.like_res.findAll({
       where: { user_id: user_id },
     });
@@ -61,4 +64,5 @@ const getLikeByUserId = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 export { like, unlike, getLikeByResId, getLikeByUserId };

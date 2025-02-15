@@ -1,7 +1,7 @@
 import express  from 'express';
-import { listOrders } from '../controller/orderController.js';
+import { orders } from '../controller/orderController.js';
 
 const orderRoutes = express.Router();
-orderRoutes.get('/listOrders', listOrders);
+orderRoutes.post('/orders', orders);
 
 export default orderRoutes;
